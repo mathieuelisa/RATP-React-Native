@@ -14,6 +14,18 @@ import { useState } from "react";
 export default function App() {
   const [modal, setModal] = useState(false);
 
+  const [nbParticipants, setNbParticipants] = useState("");
+  const [quittanceOf35, setQuittanceOf35] = useState("");
+  const [quittanceOf50, setQuittanceOf50] = useState("");
+  const [quittanceOf60, setQuittanceOf60] = useState("");
+
+  const onSubmit = () => {
+    console.log("voici mon nb de participant: " + nbParticipants);
+    console.log("quittance de 35: " + quittanceOf35);
+    console.log("quittance de 50: " + quittanceOf50);
+    console.log("quittance de 60: " + quittanceOf60);
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -51,17 +63,34 @@ export default function App() {
       </Modal>
 
       <View style={styles.containerInputs}>
-        <TextInput style={styles.input} keyboardType="numeric" />
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={(text) => setNbParticipants(text)}
+        />
         <Text style={styles.title}>NOMBRES DE PARTICIPANTS</Text>
-        <TextInput style={styles.input} keyboardType="numeric" />
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={(text) => setQuittanceOf35(text)}
+        />
         <Text style={styles.title}>QUITTANCES DE 35 EUROS</Text>
-        <TextInput style={styles.input} keyboardType="numeric" />
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={(text) => setQuittanceOf50(text)}
+        />
         <Text style={styles.title}>QUITTANCES DE 50 EUROS</Text>
-        <TextInput style={styles.input} keyboardType="numeric" />
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={(text) => setQuittanceOf60(text)}
+        />
         <Text style={styles.title}>QUITTANCES DE 60 EUROS</Text>
         <StyledButton
           onPress={() => {
             setModal(true);
+            onSubmit();
           }}
         />
       </View>
