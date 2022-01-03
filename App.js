@@ -19,12 +19,32 @@ export default function App() {
   const [quittanceOf50, setQuittanceOf50] = useState("");
   const [quittanceOf60, setQuittanceOf60] = useState("");
 
-  const onSubmit = () => {
-    console.log("voici mon nb de participant: " + nbParticipants);
-    console.log("quittance de 35: " + quittanceOf35);
-    console.log("quittance de 50: " + quittanceOf50);
-    console.log("quittance de 60: " + quittanceOf60);
+  const integerParticipants = Number(nbParticipants);
+  const integerOf35 = Number(quittanceOf35);
+  const integerOf50 = Number(quittanceOf50);
+  const integerOf60 = Number(quittanceOf60);
+
+  // Get average
+  const average = (a, b, c) => {
+    const resultOfFirstLevel = integerOf35 * 35;
+    const resultOfSecondLevel = integerOf50 * 50;
+    const resultOfThirdLevel = integerOf60 * 60;
+
+    return resultOfFirstLevel + resultOfSecondLevel + resultOfThirdLevel;
   };
+
+  const myResult =
+    average(integerOf35, integerOf50, integerOf60) / integerParticipants;
+
+  // Get the current date in FR
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  const currentDate = new Date().toLocaleDateString("fr-FR", options);
 
   return (
     <View style={styles.container}>
@@ -44,17 +64,20 @@ export default function App() {
               <Text>Votre prime est de : </Text>
             </View>
             <View style={styles.average}>
-              <Text style={styles.averageText}>125 euros</Text>
+              <Text style={styles.averageText}>
+                {Math.floor(myResult)} euros
+              </Text>
             </View>
             <View>
               <Text style={styles.currentDate}>
-                pour la journée du 16 Janvier 2021
+                pour la journée du {currentDate}
               </Text>
             </View>
             <Pressable
               onPress={() => {
                 setModal(false);
               }}
+              style={styles.modalButton}
             >
               <Text styles={styles.closeModal}>FERMER</Text>
             </Pressable>
@@ -90,7 +113,6 @@ export default function App() {
         <StyledButton
           onPress={() => {
             setModal(true);
-            onSubmit();
           }}
         />
       </View>
@@ -162,5 +184,13 @@ const styles = StyleSheet.create({
   },
   closeModal: {
     height: 100,
+  },
+  modalButton: {
+    width: "100%",
+    height: 40,
+    justifyContent: "center",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    alignItems: "center",
   },
 });

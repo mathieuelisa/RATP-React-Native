@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "contain",
   },
+  mark: {
+    position: "absolute",
+    height: 20,
+    width: 20,
+    left: 130,
+    top: 60,
+  },
 });
 
 export default styles;
