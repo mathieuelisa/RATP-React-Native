@@ -65,7 +65,7 @@ export default function App() {
             </View>
             <View style={styles.average}>
               <Text style={styles.averageText}>
-                {Math.floor(myResult)} euros
+                {Math.floor(myResult / 10)} euros
               </Text>
             </View>
             <View>
